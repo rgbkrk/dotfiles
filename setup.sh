@@ -26,5 +26,6 @@ create_symlink() {
 create_symlink ~/.dotfiles/.zshrc ~/.zshrc
 create_symlink ~/.dotfiles/.gitconfig ~/.gitconfig
 create_symlink ~/.dotfiles/.vimrc ~/.vimrc
+create_symlink ~/.dotfiles/.gitignore ~/.gitignore
 
 echo "Dotfiles setup complete!"
