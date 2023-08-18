@@ -2,7 +2,6 @@ export GPG_TTY=$(tty)
 
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$(brew --prefix)/opt/python@3.11/libexec/bin:$PATH"
-source ~/.localrc
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -15,15 +14,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="random"
-# Themes I like:
-#
-# fox
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ZSH_THEME_RANDOM_CANDIDATES=( "fox" "muse" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -80,6 +71,15 @@ plugins=(git command-not-found pyenv python web-search)
 
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
 export LANG=en_US.UTF-8
 export EDITOR='vim'
+
+[[ -f ~/.localrc ]] && source ~/.localrc
+
+alias jupyter='[ -f .env ] && source .env && jupyter'
+alias jupyterlab='[ -f .env ] && source .env && jupyter lab'
+

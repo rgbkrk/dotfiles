@@ -1,17 +1,30 @@
 #!/bin/bash
 
-# Clone the dotfiles repository
-git clone https://github.com/rgbkrk/dotfiles.git ~/.dotfiles
+# Clone if not already cloned
+if [ ! -d ~/.dotfiles ]; then
+  git clone https://github.com/rgbkrk/dotfiles.git ~/.dotfiles
+fi
 
-# Create symbolic links for configurations
-ln -s ~/.dotfiles/.zshrc ~/.zshrc
+# Create symlinks
+create_symlink() {
+  local source_file=$1
+  local target_file=$2
 
-# Add other symbolic links as needed
-# ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
-# ln -s ~/.dotfiles/.vimrc ~/.vimrc
+  if [ -e "$target_file" ]; then
+    read -p "File $target_file already exists. Do you want to overwrite it? (y/n) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+      echo "Skipping $target_file"
+      return
+    fi
+  fi
 
-# Source the zsh configuration
-source ~/.zshrc
+  ln -sf "$source_file" "$target_file"
+  echo "Created symlink $target_file"
+}
+
+create_symlink ~/.dotfiles/.zshrc ~/.zshrc
+create_symlink ~/.dotfiles/.gitconfig ~/.gitconfig
+create_symlink ~/.dotfiles/.vimrc ~/.vimrc
 
 echo "Dotfiles setup complete!"
-

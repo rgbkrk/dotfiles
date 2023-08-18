@@ -1,0 +1,19 @@
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[core]
+	editor = vim
+	excludesfile = /Users/kai/.gitignore
+[user]
+	email = rgbkrk@gmail.com
+	name = Kyle Kelley
+	signingkey = D794AF50C918B38E
+[commit]
+	gpgsign = true
+[alias]
+	ci = commit --no-verify
+	pv = commit -pv --no-verify
+[init]
+	defaultBranch = main
