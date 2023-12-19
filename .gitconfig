@@ -9,7 +9,7 @@
 [user]
 	email = rgbkrk@gmail.com
 	name = Kyle Kelley
-	signingkey = D794AF50C918B38E
+	signingkey = 2ECEEC759CAA5DA4
 [commit]
 	gpgsign = true
 [alias]

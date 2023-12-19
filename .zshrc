@@ -1,7 +1,11 @@
 export GPG_TTY=$(tty)
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$(brew --prefix)/opt/python@3.11/libexec/bin:$PATH"
+export PATH="$(brew --prefix python)/libexec/bin:$PATH"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -15,6 +19,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="random"
 # ZSH_THEME_RANDOM_CANDIDATES=( "fox" "muse" )
+# ZSH_THEME_RANDOM_CANDIDATES=( "duellj" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -71,10 +76,6 @@ plugins=(git command-not-found pyenv python web-search)
 
 source $ZSH/oh-my-zsh.sh
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-
 export LANG=en_US.UTF-8
 export EDITOR='vim'
 
@@ -83,3 +84,8 @@ export EDITOR='vim'
 alias jupyter='[ -f .env ] && source .env && jupyter'
 alias jupyterlab='[ -f .env ] && source .env && jupyter lab'
 
+source "$HOME/.cargo/env"
+
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+export PATH="$(brew --prefix)/opt/llvm/bin:$PATH"
